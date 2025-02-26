@@ -29,7 +29,7 @@ const upload = multer({
 // Admin uchun ma'lumotlarni saqlash
 router.post('/', upload.single('img'), async (req, res) => {
   try {
-    const { section, title_uz, title_ru, title_en, desc_uz, desc_ru, desc_en, number, name, direction } = req.body;
+    const { section, title_uz, title_ru, title_en, desc_uz, desc_ru, desc_en, number } = req.body;
 
     if (!section || !req.file || (section !== 'results' && (!title_uz || !title_ru || !title_en || !desc_uz || !desc_ru || !desc_en))) {
       return res.status(400).json({ message: 'Iltimos, barcha maydonlarni to\'ldiring!' });
@@ -40,10 +40,7 @@ router.post('/', upload.single('img'), async (req, res) => {
       homeData = new Home({
         banner: [],
         about: [],
-        our_history: [],
         results: [],
-        events: [],
-        directions: [],
         news: [],
       });
     }
@@ -64,12 +61,6 @@ router.post('/', upload.single('img'), async (req, res) => {
     } else {
       let model;
       switch (section) {
-        case 'events': 
-          model = Event;
-          break;
-        case 'directions':
-          model = Direction;
-          break;
         case 'news':
           model = News;
           break;
