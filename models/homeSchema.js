@@ -3,29 +3,13 @@ const mongoose = require('mongoose');
 const homeSchema = new mongoose.Schema({
   banner: [{
     img: String,
-    title: {
-      uz: String,
-      ru: String,
-      en: String,
-    },
-    description: {
-      uz: String,
-      ru: String,
-      en: String,
-    },
+    title: String,
+    description: String,
   }],
   about: [{
     img: String,
-    title: {
-      uz: String,
-      ru: String,
-      en: String,
-    },
-    description: {
-      uz: String,
-      ru: String,
-      en: String,
-    },
+    title: String,
+    description: String,
   }],
   results: [{
     img: String,
@@ -33,16 +17,8 @@ const homeSchema = new mongoose.Schema({
   }],
   news: [{
     img: String, 
-    title: {
-      uz: String,
-      ru: String,
-      en: String,
-    },
-    description: {
-      uz: String,
-      ru: String,
-      en: String, 
-    },
+    title: String,
+    description: String,
   }],
 });
 
