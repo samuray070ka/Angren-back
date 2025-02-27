@@ -29,9 +29,9 @@ const upload = multer({
 // Admin uchun ma'lumotlarni saqlash
 router.post('/', upload.single('img'), async (req, res) => {
   try {
-    const { section, title_uz, title_ru, title_en, desc_uz, desc_ru, desc_en, number } = req.body;
+    const { section, title_uz, desc_uz, number } = req.body;
 
-    if (!section || !req.file || (section !== 'results' && (!title_uz || !title_ru || !title_en || !desc_uz || !desc_ru || !desc_en))) {
+    if (!section || !req.file || (section !== 'results' && (!title_uz || !desc_uz))) {
       return res.status(400).json({ message: 'Iltimos, barcha maydonlarni to\'ldiring!' });
     }
 
@@ -53,8 +53,8 @@ router.post('/', upload.single('img'), async (req, res) => {
     if (section === 'results') {
       newSection.number = number;
     } else {
-      newSection.title = { uz: title_uz, ru: title_ru, en: title_en };
-      newSection.description = { uz: desc_uz, ru: desc_ru, en: desc_en };
+      newSection.title = { uz: title_uz};
+      newSection.description = { uz: desc_uz};
     }
     if (homeData[section]) {
       homeData[section].push(newSection); // Rasm saqlangan yangi section qo'shilmoqda
